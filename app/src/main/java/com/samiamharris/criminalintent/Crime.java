@@ -1,5 +1,6 @@
 package com.samiamharris.criminalintent;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,11 +12,16 @@ public class Crime {
     private UUID mId;
     private String mTitle;
     private Date mDate;
+    private int mHour;
+    private int mMinute;
     private boolean mSolved;
     public Crime() {
         //Generate unique identifier
         mId = UUID.randomUUID();
         mDate = new Date();
+        Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR);
+        mMinute = c.get(Calendar.MINUTE);
     }
 
     @Override
@@ -50,4 +56,14 @@ public class Crime {
     public void setSolved(boolean mSolved) {
         this.mSolved = mSolved;
     }
+
+    public int getHour() {return mHour;}
+
+    public void setHour(int mHour) {this.mHour = mHour;}
+
+    public int getMinute() {return mMinute;}
+
+    public void setMinute(int mMinute) {this.mMinute = mMinute;}
+
 }
+
