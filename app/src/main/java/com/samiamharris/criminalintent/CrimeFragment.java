@@ -4,6 +4,7 @@ package com.samiamharris.criminalintent;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -39,6 +41,7 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private Button mTimeButton;
     private CheckBox mSolvedCheckBox;
+    private ImageButton mPhotoButton;
 
     public static final String EXTRA_CRIME_ID =
             "com.samiamharris.criminalintent.come_id";
@@ -137,6 +140,23 @@ public class CrimeFragment extends Fragment {
                 mCrime.setSolved(isChecked);
             }
         });
+
+        mPhotoButton = (ImageButton) v.findViewById(R.id.crime_imageButton);
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), CrimeCameraActivity.class);
+                startActivity(i);
+            }
+        });
+
+        // if camera isnt available then disable camera functionality
+        PackageManager pm = getActivity().getPackageManager();
+        if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) &&
+                !pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
+            mPhotoButton.setEnabled(false);
+        }
 
         return v;
     }

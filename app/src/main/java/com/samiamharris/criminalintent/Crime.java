@@ -28,6 +28,7 @@ public class Crime {
     public Crime() {
         //Generate unique identifier
         mId = UUID.randomUUID();
+        mTitle = "Title";
         mDate = new Date();
         Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR);
