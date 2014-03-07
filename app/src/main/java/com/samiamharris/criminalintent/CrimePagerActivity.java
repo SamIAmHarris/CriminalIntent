@@ -13,7 +13,8 @@ import java.util.UUID;
 /**
  * Created by samharris on 2/24/14.
  */
-public class CrimePagerActivity extends FragmentActivity {
+public class CrimePagerActivity extends FragmentActivity
+    implements CrimeFragment.Callbacks {
 
     //going to connect views programmatically
     //instead of using an XML file
@@ -69,5 +70,12 @@ public class CrimePagerActivity extends FragmentActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onCrimeUpdated(Crime crime) {
+        //Just needs to implement it
+        //any activity hosting crime fragment needs to implement
+        //this interface
     }
 }
